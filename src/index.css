@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navLink {
+  @apply relative transition-transform duration-300 ease-linear hover:text-secondary;
+}
+
+/* .active {
+  @apply text-secondary;
+} */
+.navLink::after {
+  content: "";
+  @apply absolute -bottom-2 left-0 h-[2px] w-[100%] origin-left scale-0 transform bg-primary transition-transform duration-300 ease-linear;
+}
+.navLink:hover::after {
+  @apply origin-left scale-[1];
+}
+
+.globalPadding {
+  @apply px-4;
+}
+
+.container {
+  @apply m-auto max-w-custom;
+}
+
+.textUnderline {
+  @apply relative overflow-hidden;
+}
+.textUnderline::after {
+  content: "";
+  @apply absolute -bottom-0 left-0 h-[3px] w-[100%] origin-left scale-0 transform bg-secondary transition-transform duration-300 ease-linear;
+}
+.textUnderline:hover::after {
+  @apply origin-left scale-[1];
+}
+
+.activeTab::after {
+  @apply scale-[1];
+}
+
+/* .loginDiv {
+  position: relative;
+  z-index: 2;
+}
+.loginDiv::before {
+  position: absolute;
+  content: "";
+  opacity: 0.5;
+  z-index: 1;
+
+  @apply inset-0 bg-black;
+} */
+
+.glassyBg {
+  position: relative;
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.3); /* Slightly transparent white */
+  backdrop-filter: blur(8px); /* Apply blur effect */
+  border-radius: 10px; /* Rounded corners */
+  padding: 20px; /* Padding inside the glassy div */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow for depth */
+}
+
+.phoneInputStyle {
+  @apply !h-10 w-full border-0 bg-lightGray px-6 py-4 !text-base outline-none;
+}
+
+.react-international-phone-country-selector {
+  @apply !h-10;
+}
+
+.react-international-phone-country-selector-button {
+  @apply !h-10 border-r-0 px-3;
+}
