@@ -1,5 +1,7 @@
+import InventoryList from "./InventoryList";
+
 const Inventory = () => {
-  return <div>Inventory</div>;
+  return <InventoryList />;
 };
 
 export default Inventory;

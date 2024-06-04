@@ -1,5 +1,7 @@
+import OrderList from "../ui/OrderList";
+
 const Orders = () => {
-  return <div>Orders</div>;
+  return <OrderList />;
 };
 
 export default Orders;

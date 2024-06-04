@@ -1,5 +1,7 @@
+import ProductList from "../ui/ProductList";
+
 const Products = () => {
-  return <div>Products</div>;
+  return <ProductList />;
 };
 
 export default Products;
