@@ -1,7 +1,14 @@
-import { useForm, useController, SubmitHandler } from "react-hook-form";
+import {
+  useForm,
+  useController,
+  SubmitHandler,
+  useWatch,
+} from "react-hook-form";
 import {
   isEmailValid,
   isPhoneValid,
+  isValidPassword,
+  passwordsMatch,
   toLowerCase,
 } from "../utils/formValidators";
 import { PhoneInput } from "react-international-phone";
@@ -25,6 +32,8 @@ interface IFormInput {
   productCategories: string;
   storeLocations: string;
   businessCategory: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const RetailerForm = () => {
@@ -35,6 +44,12 @@ const RetailerForm = () => {
     control,
     formState: { errors, isSubmitting },
   } = useForm<IFormInput>({ defaultValues: { businessCategory: "retailer" } });
+
+  const password = useWatch({
+    control,
+    name: "password",
+    defaultValue: "",
+  });
 
   const { field } = useController({
     name: "phoneNumber",
@@ -260,6 +275,50 @@ const RetailerForm = () => {
         }}
         className="text-base"
       />
+
+      <div className="grid grid-cols-2 gap-4">
+        <Input
+          name="password"
+          id="password"
+          label="Password"
+          type="password"
+          error={errors}
+          register={register}
+          disabled={isSubmitting}
+          validationSchema={{
+            required: {
+              value: true,
+              message: "This field is required",
+            },
+            validate: {
+              isValidPassword: (value) =>
+                isValidPassword(value) ||
+                "Password must be 8+ characters, with upper, lower, and special characters.",
+            },
+          }}
+          className="text-base"
+        />
+        <Input
+          name="confirmPassword"
+          id="confirmPassword"
+          label="Confirm Password"
+          type="password"
+          error={errors}
+          register={register}
+          disabled={isSubmitting}
+          validationSchema={{
+            required: {
+              value: true,
+              message: "This field is required",
+            },
+            validate: {
+              passwordsMatch: (value) =>
+                passwordsMatch(password, value) || "Passwords do not match",
+            },
+          }}
+          className="text-base"
+        />
+      </div>
 
       <Button type="submit" disabled={isSubmitting}>
         Submit

@@ -6,7 +6,7 @@ import DashboardLinks from "./DashboardLinks";
 const ManufacturerLinks = () => {
   return (
     <ul className="mt-10 flex h-max w-full flex-col items-start justify-between gap-y-1">
-      <DashboardLinks to="/">
+      <DashboardLinks to="/dashboard">
         <RiHome4Line className="text-xl" /> Home
       </DashboardLinks>
       <DashboardLinks to="products">

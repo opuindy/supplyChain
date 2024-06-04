@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage.";
 import ApplicationLayout from "./ui/ApplicationLayout";
 import Dashboard from "./ui/Dashboard";
@@ -10,6 +10,7 @@ import CreateNewOrder from "./pages/CreateNewOrder";
 import Orders from "./pages/Orders";
 import CreateNewInventory from "./pages/CreateNewInventory";
 import Inventory from "./ui/Inventory";
+import DashboardHomePage from "./pages/DashboardHomePage";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
           <Route index element={<HomePage />} />
         </Route>
         <Route path="dashboard" element={<Dashboard />}>
-          <Route index element={<Outlet />} />
+          <Route index element={<DashboardHomePage />} />
           <Route path="products" element={<Products />} />
           <Route path="create-new-product" element={<CreateNewProduct />} />
           <Route path="orders" element={<Orders />} />

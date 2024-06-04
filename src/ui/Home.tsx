@@ -1,7 +1,19 @@
+import { useEffect } from "react";
 import Banner from "./../assets/images/banner.png";
-import LinkButton from "./LinkButton";
+import { useAccount } from "wagmi";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const account = useAccount();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (account.isConnected) {
+      navigate("/login");
+    }
+  }, [account.isConnected, navigate]);
+
   return (
     <section
       className="globalPadding flex h-[85vh] w-full items-center justify-between
@@ -15,7 +27,8 @@ const Home = () => {
           <p className="mb-6 text-left text-lg">
             Ensuring transparency and trust in your food.
           </p>
-          <LinkButton to="login">Connect To Get Started</LinkButton>
+          {/* <LinkButton to="login">Connect To Get Started</LinkButton> */}
+          <w3m-button label="Connect To Get Started" />
         </div>{" "}
         <div className="flex h-full w-1/2">
           <img

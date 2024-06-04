@@ -33,10 +33,10 @@ const Input = ({
         type="text"
         {...rest}
         {...register(rest.name!, validationSchema)}
-        className={`border-border  focus:border-secondary bg-lightGray h-10 w-full rounded-md border-0 px-6 py-4 outline-none focus:border ${className ? className : ""}`}
+        className={`h-10  w-full rounded-md border-0 border-border bg-lightGray px-6 py-4 outline-none focus:border focus:border-secondary ${className ? className : ""}`}
       />
       {error && error[rest.name!] && (
-        <span className="text-primaryRed absolute -top-0 right-0 text-[.75rem]">
+        <span className="absolute -top-0 right-0 max-w-[70%] text-[.75rem] font-medium text-primaryRed">
           {error[rest.name!].message}
         </span>
       )}

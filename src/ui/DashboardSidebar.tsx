@@ -4,21 +4,26 @@ import { useUserRole } from "../Context/UserRoleContext";
 import ManufacturerLinks from "./ManufacturerLinks";
 import DistributorLinks from "./DistributorLinks";
 import RetailerLinks from "./RetailerLinks";
+import { useLogout } from "../Hooks/useLogout";
 
 const DashboardSidebar = () => {
+  const handleLogout = useLogout();
   const { role } = useUserRole();
 
   return (
     <div className="h-full w-[300px] bg-background">
       <div className="flex h-full flex-col items-start justify-start p-4">
-        <div className="text-darkGray text-xl font-bold uppercase">
+        <div className="text-xl font-bold uppercase text-darkGray">
           supply chain
         </div>
 
-        {role.trim() === "Manufacturer" && <ManufacturerLinks />}
-        {role.trim() === "Distributor" && <DistributorLinks />}
-        {role.trim() === "Retailer" && <RetailerLinks />}
-        <Button className="!bg-linkBackground !text-darkGray mt-auto flex w-full items-center justify-start gap-x-2 text-left font-medium hover:!bg-secondary hover:!text-white">
+        {role.trim().toLowerCase() === "manufacturer" && <ManufacturerLinks />}
+        {role.trim().toLowerCase() === "distributor" && <DistributorLinks />}
+        {role.trim().toLowerCase() === "retailer" && <RetailerLinks />}
+        <Button
+          className="mt-auto flex w-full items-center justify-start gap-x-2 !bg-linkBackground text-left font-medium !text-darkGray hover:!bg-secondary hover:!text-white"
+          onClick={handleLogout}
+        >
           <HiOutlineLogout className="text-xl" />
           <span> Log Out</span>
         </Button>
