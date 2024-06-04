@@ -9,7 +9,7 @@ const LoginSection = () => {
     <div className="glassyBg relative m-auto  flex w-full max-w-custom items-center justify-center shadow-lg">
       <Button
         className="absolute right-24 top-8 bg-transparent !text-accent hover:bg-transparent "
-        onClick={handleLogout}
+        onClick={() => handleLogout()}
       >
         Disconnect
       </Button>

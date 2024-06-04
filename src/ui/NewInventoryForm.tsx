@@ -41,7 +41,7 @@ const NewInventoryForm = () => {
         <h1 className="mb-2 text-3xl font-bold text-primary">
           Add New Inventory
         </h1>
-        <p className="text-darkGray text-lg">
+        <p className="text-lg text-darkGray">
           Fill in the details below to add new inventory.
         </p>
       </div>
