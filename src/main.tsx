@@ -37,8 +37,7 @@ createWeb3Modal({
   enableOnramp: true, // Optional - false as default
   themeVariables: {
     "--w3m-color-mix-strength": 40,
-    "--w3m-accent": "#00aaff",
-    "--w3m-border-radius-master": "8",
+    "--w3m-accent": "#007BFF",
   },
 });
 
