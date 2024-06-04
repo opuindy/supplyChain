@@ -6,8 +6,11 @@ import RetailerForm from "./RetailerForm";
 import registerImage from "./../assets/images/loginImg.jpg";
 import { useNavigate } from "react-router-dom";
 import { useUserRole } from "../Context/UserRoleContext";
+import Button from "./Button";
+import { useLogout } from "../Hooks/useLogout";
 
 const Register = () => {
+  const handleLogout = useLogout();
   const [tab, setTab] = useState(1);
   const navigate = useNavigate();
   const { setRole } = useUserRole();
@@ -26,7 +29,13 @@ const Register = () => {
       className="globalPadding min-h-screen w-full bg-cover bg-center py-16"
       style={{ backgroundImage: `url(${registerImage})` }}
     >
-      <div className="glassyBg container">
+      <div className="glassyBg container relative">
+        <Button
+          className="absolute right-24 top-8 bg-transparent !text-accent hover:bg-transparent "
+          onClick={handleLogout}
+        >
+          Disconnect
+        </Button>
         <h2 className="mt-16 text-center text-3xl font-medium">
           Join Our Network Today!
         </h2>

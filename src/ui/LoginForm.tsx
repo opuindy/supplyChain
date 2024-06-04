@@ -3,6 +3,7 @@ import { isEmailValid, toLowerCase } from "../utils/formValidators";
 import Input from "./Input";
 import Button from "./Button";
 import { useNavigate } from "react-router-dom";
+import { useUserRole } from "../Context/UserRoleContext";
 
 interface IFormInput {
   email: string;
@@ -11,6 +12,7 @@ interface IFormInput {
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  const { setRole } = useUserRole();
   const {
     register,
     handleSubmit,
@@ -20,10 +22,12 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
+    setRole("manufacturer");
     navigate("/dashboard", { replace: true });
   };
 
   const handleNavigate = () => {
+    setRole("");
     navigate("/register");
   };
 
@@ -34,7 +38,7 @@ const LoginForm = () => {
     >
       <div className="w-full text-left">
         <h1 className="">
-          <span className="block text-accent">Login</span>
+          <span className="block text-lg text-secondary">Login</span>
           <span className="block text-3xl font-medium">Your account</span>
         </h1>
       </div>
