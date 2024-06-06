@@ -7,7 +7,7 @@ interface OrderItemsProp {
   orderDate: string;
   deliveryDate: string;
   orderedQuantity: string;
-  id: string;
+  id?: string;
 }
 
 const OrderItems = ({

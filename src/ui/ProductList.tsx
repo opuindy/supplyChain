@@ -1,3 +1,4 @@
+import { products } from "../utils/data";
 import ProductItems from "./ProductItems";
 
 const ProductList = () => {
@@ -10,38 +11,18 @@ const ProductList = () => {
         <div className="col-span-1"> Manufacture Date</div>
         <div className="col-span-1"> Quantity Produce</div>
       </div>
-      <ProductItems
-        productName="Herbron Bread"
-        productType="Food"
-        batchNumber="8991bh"
-        manufacturerDate="14/05/2024"
-        quantityProduce="200"
-        id="1"
-      />
-      <ProductItems
-        productName="Herbron Sachet Water"
-        productType="Water"
-        batchNumber="8098vw"
-        manufacturerDate="10/05/2024"
-        quantityProduce="500"
-        id="2"
-      />
-      <ProductItems
-        productName="Herbron Table Water"
-        productType="Water"
-        batchNumber="0091CF"
-        manufacturerDate="21/05/2024"
-        quantityProduce="350"
-        id="3"
-      />
-      <ProductItems
-        productName="Green Fertilizer"
-        productType="Fertilizer"
-        batchNumber="0001AA"
-        manufacturerDate="06/04/2024"
-        quantityProduce="80"
-        id="4"
-      />
+      {products &&
+        products.map((product, i) => (
+          <ProductItems
+            productName={product.productName}
+            productType={product.productType}
+            batchNumber={product.batchNumber}
+            manufacturerDate={product.manufacturingDate}
+            quantityProduce={`${product.quantityProduced}`}
+            id={(i + 1).toString()}
+            key={i}
+          />
+        ))}
     </section>
   );
 };
