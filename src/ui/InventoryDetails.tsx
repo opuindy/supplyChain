@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import { inventory } from "../utils/data";
 import DetailsCard from "./DetailsCard";
+import QRCode from "qrcode.react";
 
 const InventoryDetails = () => {
   const { id } = useParams<{ id: string }>();
@@ -40,7 +41,16 @@ const InventoryDetails = () => {
     { label: "Additional Information", value: additionalInfo },
   ];
 
-  return <DetailsCard title="Inventory Details" details={details} />;
+  return (
+    <>
+      <DetailsCard title="Inventory Details" details={details} />
+      <QRCode
+        value={`${details.map(({ label, value }) => `${label}:${value}`).join("\n")}`}
+        size={128}
+        fgColor="#000"
+      />
+    </>
+  );
 };
 
 export default InventoryDetails;

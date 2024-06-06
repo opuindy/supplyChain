@@ -14,6 +14,8 @@ import DashboardHomePage from "./pages/DashboardHomePage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import OrderDetailsPage from "./pages/OrderDetailsPage";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage";
+import ManufacturerInformationPage from "./pages/ManufacturerInformationPage";
+import DistributorInformationPage from "./pages/DistributorInformationPage";
 
 function App() {
   return (
@@ -22,6 +24,14 @@ function App() {
         <Route path="/" element={<ApplicationLayout />}>
           {/* Nest the HomePage inside the ApplicationLayout */}
           <Route index element={<HomePage />} />
+          <Route
+            path="manufacturer-information"
+            element={<ManufacturerInformationPage />}
+          />
+          <Route
+            path="distributor-information"
+            element={<DistributorInformationPage />}
+          />
         </Route>
         <Route path="dashboard" element={<Dashboard />}>
           <Route index element={<DashboardHomePage />} />

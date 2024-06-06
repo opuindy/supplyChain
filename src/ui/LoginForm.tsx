@@ -22,7 +22,7 @@ const LoginForm = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
-    setRole("manufacturer");
+    setRole("distributor");
     navigate("/dashboard", { replace: true });
   };
 

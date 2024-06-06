@@ -12,8 +12,18 @@ const OrderList = () => {
         <div className="col-span-1">Delivery Date</div>
         <div className="col-span-1">Ordered Quantity</div>
       </div>
+
       {orders.map((order) => (
-        <OrderItems key={order.id} {...order} />
+        <OrderItems
+          key={order.id}
+          orderNumber={order.orderNumber}
+          customerName={order.customerName}
+          batchNumber={order.batchNumber}
+          orderDate={order.orderDate}
+          deliveryDate={order.deliveryDate}
+          orderedQuantity={String(order.quantityOrdered)}
+          id={order.id}
+        />
       ))}
     </section>
   );
