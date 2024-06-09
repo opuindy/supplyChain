@@ -5,14 +5,42 @@ import TextArea from "./TextArea";
 import Select from "./Select";
 import Button from "./Button";
 
+interface Option {
+  distributor: string;
+  orderNumber: string;
+}
+
+const distributorOptions = [
+  { value: "", label: "Select Distributor" },
+  {
+    label: "Hebron Bread Distributor\u00A0\u00A0\u00A0\u00A0Order No: 1234FH",
+    value: { distributor: "Hebron Bread", orderNumber: "1234FH" },
+  },
+  {
+    label: "Hebron Water Distributor\u00A0\u00A0\u00A0\u00A0Order No: 334DO",
+    value: { distributor: "Hebron Water", orderNumber: "334DO" },
+  },
+  {
+    label:
+      "Green Fertilizer Distributor\u00A0\u00A0\u00A0\u00A0Order No: 5678GF",
+    value: { distributor: "Green Fertilizer", orderNumber: "5678GF" },
+  },
+  {
+    label: "Blue Pesticide Distributor\u00A0\u00A0\u00A0\u00A0Order No: 9101BP",
+    value: { distributor: "Blue Pesticide", orderNumber: "9101BP" },
+  },
+];
+
 interface IFormInput {
   productName: string;
+  distributor: Option;
   productType: string;
-  quantityInStock: number;
-  stockingDate: string;
+  quantityOrdered: number;
+  deliveryDate: Date;
+  requestDate: Date;
   storageDetails: string;
   displayInformation: string;
-  saleDate?: string;
+  saleDate?: Date;
   customerName?: string;
   customerContact?: string;
   additionalInfo?: string;
@@ -29,7 +57,7 @@ const NewInventoryForm = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
-    navigate("/inventory", { replace: true });
+    navigate("/dashboard/inventory");
   };
 
   return (
@@ -60,6 +88,17 @@ const NewInventoryForm = () => {
           },
         }}
       />
+      <Select
+        label="Distributor"
+        id="distributor"
+        className="w-full text-base"
+        name="distributor"
+        register={register}
+        error={errors}
+        disabled={isSubmitting}
+        options={distributorOptions}
+        validationSchema={{ required: "Distibutor is required" }}
+      />
 
       <Select
         name="productType"
@@ -84,9 +123,9 @@ const NewInventoryForm = () => {
       />
 
       <Input
-        name="quantityInStock"
-        id="quantityInStock"
-        label="Quantity In Stock"
+        name="quantityOrdered"
+        id="quantityOrdered"
+        label="Quantity Ordered"
         type="number"
         className="w-full text-base"
         error={errors}
@@ -101,9 +140,25 @@ const NewInventoryForm = () => {
       />
 
       <Input
-        name="stockingDate"
-        id="stockingDate"
-        label="Stocking Date"
+        name="requestDate"
+        id="requestDate"
+        label="Request Date"
+        type="date"
+        className="w-full text-base"
+        error={errors}
+        disabled={isSubmitting}
+        register={register}
+        validationSchema={{
+          required: {
+            value: true,
+            message: "This field is required",
+          },
+        }}
+      />
+      <Input
+        name="deliveryDate"
+        id="deliveryDate"
+        label="Stocking/Delivery Date"
         type="date"
         className="w-full text-base"
         error={errors}

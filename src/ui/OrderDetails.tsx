@@ -61,7 +61,7 @@ const OrderDetails = () => {
               <p className="p-2">Request Date</p>
               <p className="p-2">Expected Delivery Date</p>
               <p className="p-2">Request Status</p>
-              <p className="p-2"></p>
+              <p className="p-2">Action</p>
             </div>
             {order.retailers.map((retailer, index) => (
               <RetailerRequestInfo
@@ -73,11 +73,11 @@ const OrderDetails = () => {
           </>
         ) : (
           <p className=" font-semibold text-darkGray">
-            No distributor has made a request yet.
+            No Retailer has made a request yet.
           </p>
         )}
       </div>
-      <div className="m-auto mb-4 mt-6 w-[800px] space-y-8 px-6 py-8 ">
+      <div className="my-8">
         {qrIsVisible ? (
           <QrCodeGenerator value={orderUrl} />
         ) : (

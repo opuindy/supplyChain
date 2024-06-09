@@ -40,7 +40,7 @@ const NewProductForm = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
-    navigate("/products", { replace: true });
+    navigate("dashboard/products");
   };
 
   const productType = useWatch({
@@ -58,7 +58,7 @@ const NewProductForm = () => {
         <h1 className="mb-2 text-3xl font-bold text-primary">
           Create New Product
         </h1>
-        <p className="text-darkGray text-lg">
+        <p className="text-lg text-darkGray">
           Fill in the details below to add a new product to your inventory.
         </p>
       </div>

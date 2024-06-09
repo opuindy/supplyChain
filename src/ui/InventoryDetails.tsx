@@ -18,26 +18,26 @@ const InventoryDetails = () => {
   const {
     productName,
     productType,
-    quantityInStock,
-    stockingDate,
+    quantityOrdered,
+    requestDate,
     storageDetails,
     displayInformation,
-    saleDate,
-    customerName,
-    customerContact,
+    deliveryDate,
+    distributorName,
+    distributorContact,
     additionalInfo,
   } = item;
 
   const details = [
     { label: "Product Name", value: productName },
     { label: "Product Type", value: productType },
-    { label: "Quantity In Stock", value: quantityInStock },
-    { label: "Stocking Date", value: stockingDate },
+    { label: "Quantity Ordered", value: quantityOrdered },
+    { label: "Delivery Date", value: deliveryDate },
     { label: "Storage Details", value: storageDetails },
     { label: "Display Information", value: displayInformation },
-    { label: "Sale Date", value: saleDate },
-    { label: "Customer Name", value: customerName },
-    { label: "Customer Contact", value: customerContact },
+    { label: "Request Date", value: requestDate },
+    { label: "Distributor Name", value: distributorName },
+    { label: "Distributor Contact", value: distributorContact },
     { label: "Additional Information", value: additionalInfo },
   ];
 

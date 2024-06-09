@@ -5,9 +5,35 @@ import TextArea from "./TextArea";
 import Select from "./Select";
 import Button from "./Button";
 
+const manufacturerOptions = [
+  { value: "", label: "Select Manufacturer" },
+  {
+    label: "Hebron Bread\u00A0\u00A0\u00A0\u00A0Batch No: 1234FH",
+    value: { manufacturer: "Hebron Bread", batchNumber: "1234FH" },
+  },
+  {
+    label: "Hebron Water\u00A0\u00A0\u00A0\u00A0Batch No: 334DO",
+    value: { manufacturer: "Hebron Water", batchNumber: "334DO" },
+  },
+  {
+    label: "Green Fertilizer\u00A0\u00A0\u00A0\u00A0Batch No: 5678GF",
+    value: { manufacturer: "Green Fertilizer", batchNumber: "5678GF" },
+  },
+  {
+    label: "Blue Pesticide\u00A0\u00A0\u00A0\u00A0Batch No: 9101BP",
+    value: { manufacturer: "Blue Pesticide", batchNumber: "9101BP" },
+  },
+];
+
+interface Option {
+  manufacturer: string;
+  batchNumber: string;
+}
+
 interface IFormInput {
   orderNumber: string;
-  customerName: string;
+  manufacturer: Option;
+  productName: string;
   productType: string;
   quantityOrdered: number;
   batchNumber: string;
@@ -31,7 +57,7 @@ const NewOrderForm = () => {
 
   const onSubmit: SubmitHandler<IFormInput> = (data) => {
     console.log(data);
-    navigate("/orders", { replace: true });
+    navigate("dashboard/orders", { replace: true });
   };
 
   return (
@@ -43,10 +69,37 @@ const NewOrderForm = () => {
         <h1 className="mb-2 text-3xl font-bold text-primary">
           Create New Order
         </h1>
-        <p className="text-darkGray text-lg">
+        <p className="text-lg text-darkGray">
           Fill in the details below to add a new order.
         </p>
       </div>
+
+      <Input
+        name="productName"
+        id="productName"
+        label="Product Name"
+        className="w-full text-base"
+        error={errors}
+        disabled={isSubmitting}
+        register={register}
+        validationSchema={{
+          required: {
+            value: true,
+            message: "This field is required",
+          },
+        }}
+      />
+      <Select
+        label="Manufacturer"
+        id="manufacturer"
+        className="w-full text-base"
+        name="manufacturer"
+        register={register}
+        error={errors}
+        disabled={isSubmitting}
+        options={manufacturerOptions}
+        validationSchema={{ required: "Manufacturer is required" }}
+      />
       <Input
         name="orderNumber"
         id="orderNumber"
@@ -66,22 +119,6 @@ const NewOrderForm = () => {
         name="batchNumber"
         id="batchNumber"
         label="Batch Number"
-        className="w-full text-base"
-        error={errors}
-        disabled={isSubmitting}
-        register={register}
-        validationSchema={{
-          required: {
-            value: true,
-            message: "This field is required",
-          },
-        }}
-      />
-
-      <Input
-        name="customerName"
-        id="customerName"
-        label="Customer Name"
         className="w-full text-base"
         error={errors}
         disabled={isSubmitting}
