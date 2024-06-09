@@ -3,14 +3,14 @@ import { Link } from "react-router-dom";
 interface InventoryItemsProps {
   productName: string;
   productType: string;
-  quantityInStock: number;
+  quantityOrdered: number;
   id: string;
 }
 
 const InventoryItems = ({
   productName,
   productType,
-  quantityInStock,
+  quantityOrdered,
   id,
 }: InventoryItemsProps) => {
   return (
@@ -20,7 +20,7 @@ const InventoryItems = ({
     >
       <div className="col-span-1">{productName}</div>
       <div className="col-span-1">{productType}</div>
-      <div className="col-span-1">{quantityInStock}</div>
+      <div className="col-span-1">{quantityOrdered}</div>
     </Link>
   );
 };
