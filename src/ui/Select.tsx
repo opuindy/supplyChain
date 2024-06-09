@@ -1,4 +1,3 @@
-// src/components/Select.js
 import { SelectHTMLAttributes } from "react";
 import {
   DeepMap,
@@ -15,7 +14,16 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   register: UseFormRegister<any>;
   validationSchema?: RegisterOptions;
   className?: string;
-  options: { value: string; label: string }[];
+  options: {
+    value:
+      | string
+      | {
+          manufacturer: string;
+          batchNumber: string;
+        }
+      | { distributor: string; orderNumber: string };
+    label: string;
+  }[];
 }
 
 const Select = ({
@@ -33,15 +41,31 @@ const Select = ({
         {label}
       </label>
       <select
-        {...register(rest.name!, validationSchema)}
+        {...register(rest.name!, {
+          ...validationSchema,
+          setValueAs: (value) => {
+            try {
+              return JSON.parse(value);
+            } catch {
+              return value;
+            }
+          },
+        })}
         {...rest}
         className={`focus:border-primaryColor h-10 w-full rounded-md border-0 bg-lightGray px-6 py-2 outline-none focus:border ${className ? className : ""}`}
       >
         <option value="" disabled>
           Select an option
         </option>
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
+        {options.map((option, i) => (
+          <option
+            key={i}
+            value={
+              typeof option.value === "string"
+                ? option.value
+                : JSON.stringify(option.value)
+            }
+          >
             {option.label}
           </option>
         ))}

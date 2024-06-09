@@ -33,7 +33,7 @@ const QrCodeGenerator = ({ value }: QrCodeGeneratorProps) => {
   return (
     <div className="h-20vh flex flex-col items-start justify-between space-y-4">
       <div ref={qrCodeRef}>
-        <QRCode value={value} size={300} />
+        <QRCode value={value} size={300} includeMargin />
       </div>
 
       <Button onClick={downloadQRCode} disabled={isDownloading}>
